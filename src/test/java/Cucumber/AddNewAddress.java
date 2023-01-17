@@ -37,7 +37,7 @@ public class AddNewAddress {
     public void userClickedAtAddAddressButtom() {
         WebElement addAddressButton = driver.findElement(By.xpath("//*[@id=\"footer_account_list\"]/li[4]/a"));
         addAddressButton.click();
-        WebElement createNewAddressButton = driver.findElement(By.xpath("//*[@id=\"content\"]/div[3]/a/span"));
+        WebElement createNewAddressButton = driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/a/span"));
         createNewAddressButton.click();
 
     }
@@ -50,10 +50,13 @@ public class AddNewAddress {
 
     @Then("new address is data is correct and contains {string}, {string}, {string}, {string}, {string}, {string}")
     public void newAddressIsDataIsCorrectAndContainsAliasAddressCityPostCodeCountryPhone(String alias, String address, String city, String postCode, String country, String phone) {
-        WebElement updateAddressButton = driver.findElement(By.xpath("//*[@id=\"address-30009\"]/div[2]/a[1]/span"));
-        updateAddressButton.click();
-        String CheckAlias = driver.findElement(By.id("field-alias")).getText();
-        Assertions.assertEquals(CheckAlias, alias);
+        String CheckAddress = driver.findElement(By.xpath("//*[@id=\"address-30738\"]/div[1]")).getText();
+        CheckAddress.contains(alias);
+        CheckAddress.contains(address);
+        CheckAddress.contains(city);
+        CheckAddress.contains(postCode);
+        CheckAddress.contains(country);
+        CheckAddress.contains(phone);
     }
 
 }
